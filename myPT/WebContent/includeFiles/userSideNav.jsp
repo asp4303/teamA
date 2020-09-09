@@ -27,7 +27,7 @@
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-columns"></i>
                 </div>
-                게시판
+                	게시판
                 <div class="sb-sidenav-collapse-arrow">
                   <i class="fas fa-angle-down"></i>
                 </div>
@@ -48,13 +48,13 @@
                   <a class="nav-link" href="question.jsp">Q & A</a>
                 </nav>
               </div>
-              <a class="nav-link" href="payment.jsp">
+              <a class="nav-link" href="movePayment.do">
                 <div class="sb-nav-link-icon">
                   <i class="fas fa-chart-area"></i>
                 </div>
-                결제
+              	  결제
               </a>
-              <a class="nav-link" href="profile.jsp">
+              <a class="nav-link" href="moveMyProfile.do">
                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                 마이페이지
               </a>

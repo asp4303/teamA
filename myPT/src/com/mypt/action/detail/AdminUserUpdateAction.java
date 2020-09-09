@@ -25,8 +25,12 @@ public class AdminUserUpdateAction implements Action{
 		dto.setAddress(request.getParameter("address"));
 		dto.setTid(request.getParameter("trainer"));
 		dto.setTel(request.getParameter("tel"));
-		dto.setStartdate(Date.valueOf(request.getParameter("startDate")));
-		dto.setEnddate(Date.valueOf(request.getParameter("endDate")));
+		
+//		dto.setStartdate(Date.valueOf(request.getParameter("startDate")));
+//		dto.setEnddate(Date.valueOf(request.getParameter("endDate")));
+		dto.setStartdate(request.getParameter("startDate"));
+		dto.setEnddate(request.getParameter("endDate"));
+		
 		dto.setPtcount(Integer.parseInt(request.getParameter("remainNum")));
 		dto.setId(request.getParameter("hiddenUserID"));
 		dto.setAddrdetail(request.getParameter("addrdetail"));
