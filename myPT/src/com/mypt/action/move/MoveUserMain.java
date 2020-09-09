@@ -23,8 +23,11 @@ public class MoveUserMain implements Action {
 		String id=(String)session.getAttribute("id");
 		UserDto dto=dao.getUserById(id);
 		int ptcount=dto.getPtcount();
-		Date startdate=dto.getStartdate();
-		Date enddate=dto.getEnddate();
+		
+//		Date startdate=dto.getStartdate();
+//		Date enddate=dto.getEnddate();
+		String startdate=dto.getStartdate();
+		String enddate=dto.getEnddate();
 		
 		String tid=dto.getTid();
 		TrainerDao tdao=TrainerDao.getInstance();

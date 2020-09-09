@@ -22,6 +22,7 @@ public class HistoryDao {
 		db = DBConnection.getInstance();
 	}
 
+	//paydate 뺌 (이)
 	public void insertHistory(HistoryDto historyBean) {
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -29,15 +30,17 @@ public class HistoryDao {
 
 		try {
 			con = db.getConnection();
-			sql = "insert history(hid,paydate,price,hcount,tid) " + "values(?,?,?,?,?)";
+			sql = "insert history(hid,price,hcount,tid) values(?,?,?,?)";
+			
 			ps = con.prepareStatement(sql);
+	
 			ps.setString(1, historyBean.getHid());
-			ps.setString(2, historyBean.getPaydate());
-			ps.setInt(3, historyBean.getPrice());
-			ps.setInt(4, historyBean.getHcount());
-			ps.setString(5, historyBean.getT_id());
+			ps.setInt(2, historyBean.getPrice());
+			ps.setInt(3, historyBean.getHcount());
+			ps.setString(4, historyBean.getTid());
 
 			ps.execute();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -60,7 +63,7 @@ public class HistoryDao {
 			rs = ps.executeQuery();
 			if (rs.next()) {
 				historyBean.setHid(rs.getString("hid"));
-				historyBean.setPaydate(rs.getString("paydate"));
+				historyBean.setPaydate(rs.getTimestamp("paydate"));
 				historyBean.setPrice(rs.getInt("price"));
 				historyBean.setHcount(rs.getInt("hcount"));
 			}
@@ -83,7 +86,7 @@ public class HistoryDao {
 			sql = "update history set paydate=?,price=?,hcount=? where hid=?";
 			ps = con.prepareStatement(sql);
 
-			ps.setString(1, historyBean.getPaydate());
+			ps.setTimestamp(1, historyBean.getPaydate());
 			ps.setInt(2, historyBean.getPrice());
 			ps.setInt(3, historyBean.getHcount());
 			ps.setString(4, historyBean.getHid());
@@ -188,7 +191,7 @@ public class HistoryDao {
 				historyBean = new HistoryDto();
 				System.out.println(rs.getString(1));
 				historyBean.setIncome(Integer.parseInt(rs.getString(1)));
-				historyBean.setT_id(rs.getString(2));
+				historyBean.setTid(rs.getString(2));
 				historyBean.setT_name(rs.getString(3));
 				arr.add(historyBean);
 

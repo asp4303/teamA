@@ -28,7 +28,7 @@ public class ProgramDao {
 
 		try {
 			con = db.getConnection();
-			sql = "insert program(p_id,p_date,p_mention,p_part) " + "values(?,?,?,?)";
+			sql = "insert program(p_id,p_date,p_mention,p_part) " + "valuse(?,?,?,?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, programBean.getP_id());
 			ps.setString(2, programBean.getP_date());
@@ -79,13 +79,13 @@ public class ProgramDao {
 
 		try {
 			con = db.getConnection();
-			sql = "update program set p_mention=?,p_part=? where p_id=? and p_date=?";
+			sql = "update program set p_date=?,p_mention=?,p_part=? where p_id=?";
 			ps = con.prepareStatement(sql);
 
-			ps.setString(1, programBean.getP_mention());
-			ps.setString(2, programBean.getP_part());
-			ps.setString(3, programBean.getP_id());
-			ps.setString(4, programBean.getP_date());
+			ps.setString(1, programBean.getP_date());
+			ps.setString(2, programBean.getP_mention());
+			ps.setString(3, programBean.getP_part());
+			ps.setString(4, programBean.getP_id());
 
 			ps.execute();
 		} catch (Exception e) {
@@ -96,17 +96,16 @@ public class ProgramDao {
 
 	}
 
-	public void deleteProgram(String p_id, String p_date) {
+	public void deleteProgram(String p_id) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = null;
 
 		try {
 			con = db.getConnection();
-			sql = "delete from program where p_id=? and p_date=?";
+			sql = "delete from program where p_id=?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, p_id);
-			ps.setString(2, p_date);
 
 			ps.execute();
 		} catch (Exception e) {
@@ -115,33 +114,4 @@ public class ProgramDao {
 			db.closeConnection(null, ps, con);
 		}
 	}
-	
-	public int isProgramExist(String p_id, String p_date) {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String sql = null;
-		int flag=0;
-
-		try {
-			con = db.getConnection();
-			sql = "select * from program where p_id=? and p_date=?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, p_id);
-			ps.setString(2, p_date);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				flag=1;
-			}else {
-				flag=0;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			db.closeConnection(rs, ps, con);
-		}
-
-		return flag;
-	}
-	
 }

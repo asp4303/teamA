@@ -28,7 +28,7 @@ public class IncomeTrainerAction implements Action{
 		JSONArray jarr = new JSONArray();
 		for(HistoryDto dto: arr) {
 			JSONObject obj = new JSONObject();
-			obj.put("tid", dto.getT_id());
+			obj.put("tid", dto.getTid());
 			obj.put("income", dto.getIncome());
 			obj.put("tname", dto.getT_name());
 			jarr.add(obj);

@@ -71,7 +71,7 @@ public class ScheduleDao {
 		PreparedStatement ps = null;
 		try {
 			con = db.getConnection();
-			String sql = "update schedule set s_time=? where s_id=? and s_date=?";
+			String sql = "update schedule set s_time=? where s_id=?, s_date=?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, sd.getS_time());
 			ps.setString(2, sd.getS_id());
@@ -90,7 +90,7 @@ public class ScheduleDao {
 		PreparedStatement ps = null;
 		try {
 			con = db.getConnection();
-			String sql = "delete from schedule where s_id=? and s_date=?";
+			String sql = "delete from schedule where s_id=?,s_date=?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, s_id);
 			ps.setString(2, s_date);
@@ -102,31 +102,5 @@ public class ScheduleDao {
 			db.closeConnection(null, ps, con);
 		}
 	}
-	
-	public int isScheduleExist(String s_id, String s_date) {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		int flag=0;
-		try {
-			con = db.getConnection();
-			String sql = "select * from schedule where s_id=? and s_date=?";
-			ps = con.prepareStatement(sql);
-			ps.setString(1, s_id);
-			ps.setString(2, s_date);
-			rs = ps.executeQuery();
-			if (rs.next()) {
-				flag=1;
-			}else {
-				flag=0;
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			db.closeConnection(rs, ps, con);
-		}
-		return flag;
-	}
-	
+
 }
