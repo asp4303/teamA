@@ -7,13 +7,13 @@ import com.mypt.action.board.WriteAction;
 import com.mypt.action.check.EmailCheckAction;
 import com.mypt.action.check.NickCheckAction;
 import com.mypt.action.crowded.CrowdedAction;
-import com.mypt.action.inbody.UserInbodyResultAction;
 import com.mypt.action.detail.AdminTrainerDetailAction;
 import com.mypt.action.detail.AdminTrainerUpdateAction;
 import com.mypt.action.detail.AdminUserDetailAction;
 import com.mypt.action.detail.AdminUserUpdateAction;
 import com.mypt.action.detail.UserMyDetailAction;
 import com.mypt.action.detail.UserMyUpdateAction;
+import com.mypt.action.inbody.UserInbodyResultAction;
 import com.mypt.action.income.IncomeAction;
 import com.mypt.action.income.IncomeTrainerAction;
 import com.mypt.action.income.MoveIncomeAction;
@@ -26,13 +26,17 @@ import com.mypt.action.login.UserLoginAction;
 import com.mypt.action.move.MoveCommunityAction;
 import com.mypt.action.move.MoveInbody;
 import com.mypt.action.move.MoveIntroAction;
+import com.mypt.action.move.MovePayment;
 import com.mypt.action.move.MoveSchedule;
 import com.mypt.action.move.MoveUserMain;
+import com.mypt.action.move.MoveUserMyProfile;
 import com.mypt.action.move.MoveUserRegister;
+import com.mypt.action.payment.UserPaymentDataAction;
 import com.mypt.action.qr.QrCheckAction;
 import com.mypt.action.qr.QrViewAction;
 import com.mypt.action.register.AdminUserRegisterAction;
 import com.mypt.action.schedule.TrainerScheduleSettingAction;
+
 
 
 public class ActionFactory 
@@ -62,17 +66,23 @@ public class ActionFactory
 		//userLogin
 		map.put("/userLogin", new UserLoginAction());
 		map.put("/userMain", new MoveUserMain());
-		map.put("/getInbodyResult", new UserInbodyResultAction());
 			
 		//trainerLogin
 		map.put("/trainerLogin", new TrainerLoginAction());
 		
 		//회원가입
 		map.put("/moveUserRegister", new MoveUserRegister());		
-
 		map.put("/userInsertAction", new AdminUserRegisterAction());
 		map.put("/nickCheck", new NickCheckAction());
 		map.put("/emailCheck", new EmailCheckAction());
+		
+		//인바디
+		map.put("/getInbodyResult", new UserInbodyResultAction());
+		
+		//결제
+		map.put("/movePayment", new MovePayment());
+		map.put("/paymentData", new UserPaymentDataAction());
+
 		
 		//매출
 		map.put("/moveIncome", new MoveIncomeAction());
@@ -82,6 +92,8 @@ public class ActionFactory
 		//detail
 		map.put("/adminTrainerDetail", new AdminTrainerDetailAction());
 		map.put("/adminUserDetail", new AdminUserDetailAction());
+		
+		map.put("/moveMyProfile", new MoveUserMyProfile());
 		map.put("/userMyDetail", new UserMyDetailAction());
 		
 		//update

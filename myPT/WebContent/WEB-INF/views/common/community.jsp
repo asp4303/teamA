@@ -62,7 +62,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>템플릿</title>
+    <title>커뮤니티 게시판</title>
     <link href="/myPT/css/styles.css" rel="stylesheet" />
     <link href="/myPT/css/index.css" rel="stylesheet"/>
     <link href="/myPT/css/widget.css" rel="stylesheet"/>
