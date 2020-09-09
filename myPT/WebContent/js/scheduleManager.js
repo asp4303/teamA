@@ -220,7 +220,7 @@ var dayLen;
 // 윤년 처리
 dayLen=isLeapYear(year);
 
-var day=new Array();
+var day;
 var firstWeekNum;
 var lastWeekNum;
 var firstWeekDif=0;
@@ -251,7 +251,7 @@ $("select[id=monthSelect]").on("change",function(){
 	$("#weekSelect").empty();
 	$("#weekSelect").append("<option selected disabled>주</option>");
 	let innerDate=new Date(year,month-1,1);
-	if(firstWeekDif==1&&lastWeekDif==1&&innerDate.getDay()==6){
+	if((firstWeekDif==1&&lastWeekDif==1&&innerDate.getDay()==6)||lastWeekNum.weekNo==4){
 		for(var i=1;i<=4;i++){
 			$("#weekSelect").append("<option value='"+(i+1)+"'>"+i+"주차</option>");
 			isFourWeeks=true;
@@ -287,6 +287,7 @@ $("select[id=weekSelect]").on("change",function(){
 	}
 	monthWeek="";
 	date=new Date(year,month-1);
+	day=new Array();
 	for(var i=0;i<dayLen[month-1];i++){
 		day.push(i+1);
 	}
@@ -406,25 +407,30 @@ $("select[id=weekSelect]").on("change",function(){
 		}else{
 			date.setDate(dayLen[month-1]);
 			var lastDay=date.getDay()+0;
-			for(var i=0;i<lastDay;i++){
-				date.setDate(day[i]+(7*(weekend-1))-dateDif);
-				$("#"+week[i]).text($("#"+week[i]).text().substr(0,1));
-				$("#"+week[i]).append(month+"/"+date.getDate());
-				$("#date"+i).val(year+"-"+month+"-"+date.getDate());
+			if(lastDay==0){
+				
+			}else{
+				for(var i=0;i<lastDay;i++){
+					date.setDate(day[i]+(7*(weekend-1))-dateDif);
+					$("#"+week[i]).text($("#"+week[i]).text().substr(0,1));
+					$("#"+week[i]).append(month+"/"+date.getDate());
+					$("#date"+i).val(year+"-"+month+"-"+date.getDate());
 			}
-			for(var i=lastDay;i<5;i++){
-				$("#"+week[i]).text($("#"+week[i]).text().substr(0,1));
-				if(month==12){
-					const nextYear=new Date(year+1,0,1);
-					$("#"+week[i]).append("("+nextYear.getFullYear()+")"
+				for(var i=lastDay;i<5;i++){
+					$("#"+week[i]).text($("#"+week[i]).text().substr(0,1));
+					if(month==12){
+						const nextYear=new Date(year+1,0,1);
+						$("#"+week[i]).append("("+nextYear.getFullYear()+")"
 										+(nextYear.getMonth()+1)+"/"+(i-lastDay+1));
-					$("#date"+i).val(nextYear.getFullYear()+"-"
+						$("#date"+i).val(nextYear.getFullYear()+"-"
 									+(nextYear.getMonth()+1)+"-"+(i-lastDay+1));
-				}else{
-					$("#"+week[i]).append((Number(month)+1)+"/"+(i-lastDay+1));
-					$("#date"+i).val(year+"-"+(Number(month)+1)+"-"+(i-lastDay+1));
+					}else{
+						$("#"+week[i]).append((Number(month)+1)+"/"+(i-lastDay+1));
+						$("#date"+i).val(year+"-"+(Number(month)+1)+"-"+(i-lastDay+1));
+					} 
 				}
 			}
+			
 		}
 				
 	}	
