@@ -75,7 +75,6 @@
                           id="pw1"
                           name="pw"
                           type="password"
-                          placeholder="Enter password"
                         />
                       </div>
                       <div class="form-group">
